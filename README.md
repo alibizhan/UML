@@ -14,4 +14,4 @@ Checkout use case includes several required uses cases. Web customer should be a
 
 Checkout use case also includes Payment use case which could be done either by using credit card and external credit payment service or with PayPal.
 
-[link](https://www.uml-diagrams.org/examples/online-shopping-use-case-diagram-example.html?context=uc-examples)
+[For more details](https://www.uml-diagrams.org/examples/online-shopping-use-case-diagram-example.html?context=uc-examples)
