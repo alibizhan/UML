@@ -1,0 +1,45 @@
+@startuml
+top to bottom direction
+title Online shopping use case diagram checkout, authentication and payment use cases.\n
+
+actor "<<service>>\nauthentication" as actorAuth
+actor "identity\nprovider" as idProvider
+actor "credit\npayment\nservice" as crPayment
+actor "paypal" as paypal
+
+usecase (checkout) as checkout
+
+usecase (customer\nauthentication) as customerAuth
+usecase (view / update\nshoping cart) as viewUpdate
+usecase (calculate\ntaxes and \nshipping) as calcTax
+usecase (payment) as payment
+
+checkout.> customerAuth : <<include>>
+checkout.> viewUpdate: <<include>>
+checkout.> calcTax: <<include>>
+checkout.> payment: <<include>>
+
+usecase (user\nuser sign in) as userSignin
+usecase (remember\nme) as rememberMe
+usecase (single\nsign on) as sso
+
+userSignin --> customerAuth
+rememberMe--> customerAuth
+sso--> customerAuth 
+
+usecase (calculate\ntotal) as calcTotal
+
+viewUpdate.> calcTotal: <<include>>
+
+usecase (payment\nby credit) as payByCredit
+usecase (payment\nby paypal) as payByPaypal
+
+payByCredit--> payment
+payByPaypal--> payment
+
+actorAuth -- (userSignin)
+actorAuth -- (rememberMe)
+idProvider-- (sso)
+crPayment-- (payByCredit)
+paypal-- (payByPaypal)
+@enduml

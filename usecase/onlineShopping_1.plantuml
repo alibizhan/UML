@@ -1,0 +1,36 @@
+@startuml
+top to bottom direction
+title Online shopping UML use case diagram view items use case.\n
+usecase (view\nitems) as viewItems
+
+
+
+usecase (search\nitems) as searchItems
+usecase (browse\nitmes) as browseItems
+usecase (view\nrecommended\nitmes) as viewRecItems
+usecase (add to\nshopping cart) as addToshopingCart
+usecase (add to\nwish list) as addToWlist
+
+usecase (customer\nauthentication) as customerAuth
+
+browseItems -[hidden]up- searchItems
+viewRecItems -[hidden]up- browseItems
+addToshopingCart -[hidden]up- viewRecItems
+addToWlist -[hidden]up- addToshopingCart
+viewItems -[hidden]right- viewRecItems
+viewItems -[hidden]up- viewRecItems
+addToshopingCart -[hidden]up- customerAuth
+browseItems -[hidden]up- addToWlist
+addToshopingCart -[hidden]down- browseItems
+
+
+searchItems .>  viewItems : <<extend>>
+browseItems .> viewItems : <<extend>>
+viewRecItems .> viewItems : <<extend>>
+addToshopingCart .> viewItems : <<extend>>
+addToWlist .> viewItems : <<extend>>
+
+customerAuth .> addToshopingCart : <<extend>>
+viewRecItems .> customerAuth : <<include>>
+addToWlist .> customerAuth : <<include>>
+@enduml

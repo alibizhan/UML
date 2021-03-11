@@ -1,0 +1,41 @@
+@startuml
+left to right direction
+
+title Online shopping UML use case diagram top level use cases.\n
+
+skinparam packageStyle rectangle
+actor "registered\ncustomer" as regCustomer
+actor "web\ncustomer" as webCustomer
+actor "new\ncustomer" as newCustomer
+
+actor "<<service>>\nauthentication" as auth
+actor "identity\nprovider" as idProvider
+actor "credit\npayment\nservice" as crPayment
+actor "paypal" as paypal
+
+
+rectangle "<<subsystem>>\nonline shoping" {
+ 
+  regCustomer -- (view\nitems)
+  regCustomer -- (make\npurchase)
+  newCustomer -- (client\nregister)
+  newCustomer -- (view\nitems)
+
+
+  regCustomer --> webCustomer
+  newCustomer --> webCustomer
+
+  (make\npurchase) .> (view\nitems) : include
+ 
+  (make\npurchase) .> (checkout) : include
+
+  (view\nitems)  --  auth
+  (checkout) -- auth
+  (client\nregister) -- auth
+  (view\nitems)  --  idProvider
+  (checkout)  --  idProvider
+  (checkout) -- crPayment
+  (checkout) -- paypal
+
+}
+@enduml
