@@ -13,3 +13,5 @@ Customer Authentication use case is included in View Recommended Items and Add t
 Checkout use case includes several required uses cases. Web customer should be authenticated. It could be done through user login page, user authentication cookie ("Remember me") or Single Sign-On (SSO). Web site authentication service is used in all these use cases, while SSO also requires participation of external identity provider.
 
 Checkout use case also includes Payment use case which could be done either by using credit card and external credit payment service or with PayPal.
+
+[link](https://www.uml-diagrams.org/examples/online-shopping-use-case-diagram-example.html?context=uc-examples)
